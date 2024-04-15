@@ -15,17 +15,19 @@ jobs:
           repository: tsubasa-admin/common_repo
           path: common_repo
           token: ${{ secrets.TEST_REPO_ACCESS_TOKEN }}
-      - name: Copy files from src folder
-        run: cp -R common_repo/src/* .
+      - name: Create src folder
+        run: mkdir -p src
+      - name: Copy files to src folder
+        run: cp -R common_repo/src/. src/.
       - name: List copied files
-        run: ls -R
+        run: ls -R src
       - name: create PR
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.TEST_REPO_ACCESS_TOKEN }}
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
-          commit-message: 'Copy files from src folder'
+          commit-message: 'Copy files to src folder'
           branch: copy_target
           branch-suffix: timestamp
           delete-branch: true
-          title: 'Update files from src folder'
+          title: 'Update files in src folder'
