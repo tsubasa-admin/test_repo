@@ -14,7 +14,7 @@ jobs:
         with:
           repository: tsubasa-admin/common_repo
           path: common_repo
-          token: ${{ secrets.GITHUB_ACCESS_TOKEN }}
+          token: ${{ secrets.COMMON_REPO_ACCESS_TOKEN }}
       - name: copy common_repo.py
         run: cp common_repo/common_repo.py common_repo.py
       - name: clean common_repo
@@ -22,7 +22,7 @@ jobs:
       - name: create PR
         uses: peter-evans/create-pull-request@v3
         with:
-          token: ${{ secrets.GITHUB_ACCESS_TOKEN }}
+          token: ${{ secrets.COMMON_REPO_ACCESS_TOKEN }}
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           commit-message: 'copy common_repo.py'
           branch: copy_target
